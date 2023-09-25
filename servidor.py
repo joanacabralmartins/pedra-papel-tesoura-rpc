@@ -2,6 +2,10 @@ import xmlrpc.server
 import random
 
 class PedraPapelTesoura:
+    def __init__(self):
+        self.player_score = 0
+        self.computer_score = 0
+        
     def play(self, player_choice):
         choices = ['pedra', 'papel', 'tesoura']
         computer_choice = random.choice(choices)
