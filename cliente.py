@@ -8,6 +8,7 @@ def main():
         player_choice = input("> ").lower()
         
         if player_choice == 'sair':
+            print(proxy.get_score())
             break
         
         if player_choice not in ['pedra', 'papel', 'tesoura']:

@@ -2,11 +2,11 @@ import xmlrpc.server
 import random
 
 class PedraPapelTesoura:
-    def __init__(self):
-        self.player_score = 0
-        self.computer_score = 0
-        
-    def play(self, player_choice):
+    player_score = 0
+    computer_score = 0
+
+    @classmethod
+    def play(cls, player_choice):
         choices = ['pedra', 'papel', 'tesoura']
         computer_choice = random.choice(choices)
 
@@ -17,9 +17,17 @@ class PedraPapelTesoura:
             (player_choice == 'tesoura' and computer_choice == 'papel') or
             (player_choice == 'papel' and computer_choice == 'pedra')
         ):
-            return f"Ganhou essa! O computador escolheu {computer_choice}."
+            result =  f"Ganhou essa! O computador escolheu {computer_choice}."
+            cls.player_score += 1
         else:
-            return f"Perdeu essa! O computador escolheu {computer_choice}."
+            result = f"Perdeu essa! O computador escolheu {computer_choice}."
+            cls.computer_score += 1
+
+        return result
+    
+    @classmethod
+    def get_score(cls):
+        return f"Placar: Você {cls.player_score} - Computador {cls.computer_score}"
 
 if __name__ == "__main__":
     server = xmlrpc.server.SimpleXMLRPCServer(("localhost", 8000))
